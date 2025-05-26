@@ -1,0 +1,14 @@
+{
+  "eia_api_key": "YOUR_EIA_API_KEY_HERE",
+  "fred_api_key": "YOUR_FRED_API_KEY_HERE",
+  "aws_access_key_id": "YOUR_AWS_ACCESS_KEY_ID",
+  "aws_secret_access_key": "YOUR_AWS_SECRET_ACCESS_KEY",
+  "sagemaker_execution_role": "arn:aws:iam::YOUR_ACCOUNT_ID:role/SageMakerExecutionRole",
+  "snowflake_account": "your-account.snowflakecomputing.com",
+  "snowflake_user": "YOUR_SNOWFLAKE_USERNAME",
+  "snowflake_password": "YOUR_SNOWFLAKE_PASSWORD",
+  "snowflake_warehouse": "COMPUTE_WH",
+  "snowflake_database": "GRID_SOURCE_BANK",
+  "snowflake_schema": "ENERGY_DATA",
+  "s3_bucket": "grid-source-data"
+}

@@ -1,0 +1,13 @@
+{
+  "total_periods": 14,
+  "date_range": "2025-05-24 00:00:00 to 2025-05-31 00:00:00",
+  "temperature_range_f": "50 to 80",
+  "avg_temperature_f": 61.92857142857143,
+  "avg_wind_speed_mph": 6.714285714285714,
+  "weather_conditions": {
+    "Clear": 10,
+    "Partly Cloudy": 4
+  },
+  "avg_solar_potential": 0.9142857142857144,
+  "avg_wind_potential": 0.2685714285714286
+}

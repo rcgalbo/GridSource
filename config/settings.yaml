@@ -1,0 +1,214 @@
+# GridSource Bank Data Pipeline Configuration
+# This file contains all the configuration settings for the energy banking pipeline
+
+# Project Information
+project:
+  name: "GridSource Bank Energy Banking Pipeline"
+  version: "1.0.0"
+  description: "End-to-end data pipeline for energy banking liquidity forecasting"
+  author: "GridSource Bank Data Team"
+
+# AWS Configuration
+aws:
+  region: "us-west-2"
+  s3:
+    bucket_name: "grid-source-data"
+    folders:
+      raw_data: "raw/"
+      processed_data: "processed/"
+      ml_data: "ml/"
+      models: "models/"
+      predictions: "predictions/"
+  
+  sagemaker:
+    execution_role: "arn:aws:iam::ACCOUNT_ID:role/SageMakerExecutionRole"
+    instance_type: "ml.m5.large"
+    instance_count: 1
+    volume_size_gb: 10
+    max_runtime_seconds: 3600
+    model_types:
+      - "linear_regression"
+      - "ridge" 
+      - "random_forest"
+
+# Snowflake Configuration
+snowflake:
+  account: "your-account.snowflakecomputing.com"
+  database: "GRID_SOURCE_BANK"
+  schema: "ENERGY_DATA"
+  warehouse: "COMPUTE_WH"
+  role: "ACCOUNTADMIN"
+  
+  # Table names
+  tables:
+    raw_eia_data: "raw_eia_data"
+    raw_weather_data: "raw_weather_data"
+    raw_economic_data: "raw_economic_data"
+    raw_price_data: "raw_price_data"
+    ml_features: "ml_features"
+    ml_predictions: "ml_predictions"
+    model_performance: "model_performance"
+    data_quality_metrics: "data_quality_metrics"
+
+# Data Source APIs
+data_sources:
+  eia:
+    base_url: "https://api.eia.gov/v2/electricity/rto/daily-region-data/data/"
+    regions: ["CAL"]  # California
+    fuel_types: ["NG", "SUN", "WAT", "WND"]  # Natural Gas, Solar, Water, Wind
+    data_range_days: 30
+    
+  noaa:
+    base_url: "https://api.weather.gov"
+    gridpoint: "MTR/90,112"  # San Francisco Bay Area
+    user_agent: "GridSource Energy Bank Forecasting System"
+    
+  fred:
+    base_url: "https://api.stlouisfed.org/fred/series/observations"
+    indicators:
+      INDPRO: "industrial_production_index"
+      CAUR: "california_unemployment_rate"
+      DCOILWTICO: "crude_oil_price_wti"
+      GASREGW: "gasoline_price_regular"
+    data_limit: 60  # Number of recent observations
+    
+  energy_prices:
+    market: "CAISO"  # California ISO
+    base_price_mwh: 50
+    price_volatility: 5
+
+# Machine Learning Configuration
+ml:
+  features:
+    - "total_generation_mwh"
+    - "avg_temperature_f"
+    - "oil_price_usd"
+    - "industrial_production_index"
+    - "avg_electricity_price"
+  
+  target: "liquidity_need_millions"
+  
+  training:
+    test_size: 0.2
+    random_state: 42
+    min_samples: 30
+    
+  model_selection:
+    default_model: "linear_regression"
+    evaluation_metrics:
+      - "mae"  # Mean Absolute Error
+      - "rmse"  # Root Mean Square Error
+      - "r2"    # R-squared
+      - "mape"  # Mean Absolute Percentage Error
+      
+  prediction:
+    forecast_days: 7
+    confidence_interval: 0.95
+
+# Airflow Configuration
+airflow:
+  dag_id: "grid_source_automated_pipeline"
+  schedule_interval: "@daily"
+  start_date: "2025-05-23"
+  max_active_runs: 1
+  catchup: false
+  
+  default_args:
+    owner: "grid-source-bank"
+    depends_on_past: false
+    email_on_failure: false
+    retries: 1
+    retry_delay_minutes: 5
+    
+  connections:
+    snowflake_conn_id: "snowflake_default"
+    aws_conn_id: "aws_default"
+
+# Data Quality Configuration
+data_quality:
+  checks:
+    row_count:
+      ml_features:
+        min_threshold: 30
+        max_threshold: 10000
+    freshness:
+      max_days_old: 2
+    completeness:
+      required_columns_pct: 90
+    accuracy:
+      max_prediction_error_pct: 25
+
+# Power BI Configuration
+powerbi:
+  connection_type: "snowflake_direct"  # or "import"
+  refresh_schedule: "daily"
+  
+  dashboards:
+    executive_summary:
+      - "Current Liquidity KPI"
+      - "Prediction Accuracy Gauge" 
+      - "7-Day Forecast Chart"
+      
+    energy_market_analysis:
+      - "Generation by Fuel Type"
+      - "Temperature vs Demand Scatter"
+      - "Price Trend Analysis"
+      
+    model_performance:
+      - "Prediction Error Distribution"
+      - "Model Accuracy Over Time"
+      - "Feature Importance Chart"
+
+# Monitoring and Alerting
+monitoring:
+  data_pipeline:
+    max_delay_hours: 6
+    min_daily_records: 100
+    
+  model_performance:
+    max_mae_threshold: 50  # Million USD
+    min_r2_threshold: 0.7
+    
+  alerts:
+    email_recipients:
+      - "data-team@gridsourcebank.com"
+      - "risk-management@gridsourcebank.com"
+    
+    alert_conditions:
+      - "Pipeline failure"
+      - "Data quality degradation"
+      - "Model performance decline"
+      - "Prediction error spike"
+
+# Security Configuration
+security:
+  encryption:
+    s3_sse: true
+    snowflake_ssl: true
+    
+  access_control:
+    roles:
+      reader: ["SELECT"]
+      analyst: ["SELECT", "INSERT"]
+      admin: ["ALL"]
+      
+  audit:
+    log_access: true
+    retention_days: 90
+
+# Development and Testing
+development:
+  test_data:
+    sample_size: 100
+    synthetic_data: true
+    
+  local_testing:
+    use_mock_apis: true
+    local_s3_path: "./test_data/"
+    
+  deployment:
+    environments: ["dev", "staging", "prod"]
+    validation_steps:
+      - "Data quality checks"
+      - "Model validation"
+      - "Integration tests"

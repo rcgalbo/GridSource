@@ -1,0 +1,13 @@
+{
+  "total_records": 60,
+  "date_range": "2025-05-11 00:16:47.415921 to 2025-05-25 00:16:47.415921",
+  "fuel_types": [
+    "NG",
+    "SUN",
+    "WAT",
+    "WND"
+  ],
+  "total_generation_mwh": 1206105.428629262,
+  "avg_daily_generation_mwh": 77452.39321735229,
+  "avg_renewable_pct": 59.70481274417564
+}

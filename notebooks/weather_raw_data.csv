@@ -1,0 +1,15 @@
+date,period_name,temperature_f,wind_speed,wind_direction,forecast,detailed_forecast,wind_speed_numeric
+2025-05-24,Tonight,50,10 mph,SSW,Partly Cloudy,"Partly cloudy, with a low around 50. South southwest wind around 10 mph.",10.0
+2025-05-25,Sunday,66,9 to 14 mph,SW,Mostly Sunny,"Mostly sunny. High near 66, with temperatures falling to around 64 in the afternoon. Southwest wind 9 to 14 mph, with gusts as high as 22 mph.",9.0
+2025-05-25,Sunday Night,52,8 to 14 mph,WSW,Mostly Cloudy,"Mostly cloudy, with a low around 52. West southwest wind 8 to 14 mph, with gusts as high as 21 mph.",8.0
+2025-05-26,Memorial Day,69,8 to 13 mph,WSW,Sunny,"Sunny, with a high near 69. West southwest wind 8 to 13 mph, with gusts as high as 20 mph.",8.0
+2025-05-26,Monday Night,51,5 to 13 mph,SW,Mostly Clear,"Mostly clear, with a low around 51. Southwest wind 5 to 13 mph, with gusts as high as 20 mph.",5.0
+2025-05-27,Tuesday,72,5 to 10 mph,SW,Sunny,"Sunny, with a high near 72.",5.0
+2025-05-27,Tuesday Night,51,7 to 10 mph,SW,Partly Cloudy,"Partly cloudy, with a low around 51.",7.0
+2025-05-28,Wednesday,68,7 to 12 mph,SW,Mostly Sunny,"Mostly sunny, with a high near 68.",7.0
+2025-05-28,Wednesday Night,52,7 to 12 mph,SW,Partly Cloudy,"Partly cloudy, with a low around 52.",7.0
+2025-05-29,Thursday,73,6 to 12 mph,SW,Mostly Sunny,"Mostly sunny, with a high near 73.",6.0
+2025-05-29,Thursday Night,54,5 to 12 mph,SW,Mostly Clear,"Mostly clear, with a low around 54.",5.0
+2025-05-30,Friday,80,5 to 9 mph,SW,Sunny,"Sunny, with a high near 80.",5.0
+2025-05-30,Friday Night,55,6 to 9 mph,SW,Mostly Clear,"Mostly clear, with a low around 55.",6.0
+2025-05-31,Saturday,74,6 to 12 mph,SW,Sunny,"Sunny, with a high near 74.",6.0
