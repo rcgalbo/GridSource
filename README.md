@@ -22,52 +22,45 @@ GridSource Bank implements an automated data pipeline that:
 └──────┬──────┘    └──────┬──────┘    └──────┬──────┘    └──────┬──────┘
        │                  │                  │                  │
        └──────────────────┼──────────────────┼──────────────────┘
-                          │                  │
-                    ┌─────▼─────┐            │
-                    │  Airflow  │            │
-                    │    DAG    │            │
-                    └─────┬─────┘            │
-                          │                  │
-                    ┌─────▼─────┐            │
-                    │     S3    │            │
-                    │  Storage  │            │
-                    └─────┬─────┘            │
-                          │                  │
-                    ┌─────▼─────┐            │
-                    │ Snowflake │            │
-                    │Data Warehouse│         │
-                    └─────┬─────┘            │
-                          │                  │
-                    ┌─────▼─────┐            │
-                    │ SageMaker │            │
-                    │ML Training│            │
-                    └─────┬─────┘            │
-                          │                  │
-                    ┌─────▼─────┐            │
-                    │ Power BI  │            │
-                    │Dashboard  │            │
-                    └───────────┘            │
+                          │
+                    ┌─────▼─────┐
+                    │  Airflow  │
+                    │    DAG    │
+                    └─────┬─────┘
+                          │
+                    ┌─────▼─────┐
+                    │     S3    │
+                    │  Storage  │
+                    └─────┬─────┘
+                          │
+                    ┌─────▼─────┐
+                    │ Snowflake │
+                    │Data Warehouse│
+                    └─────┬─────┘
+                          │
+                    ┌─────▼─────┐
+                    │ SageMaker │
+                    │ML Training│
+                    └─────┬─────┘
+                          │
+                    ┌─────▼─────┐
+                    │ Power BI  │
+                    │Dashboard  │
+                    └───────────┘
 ```
 
 ## 📁 Project Structure
 
 ```
 GridSource/
-├── airflow/
-│   └── dags/
-│       └── grid_source_pipeline.py      # Main Airflow DAG
-├── config/
-│   ├── settings.yaml                    # Project configuration
-│   └── airflow_variables.json           # Airflow variables template
-├── sagemaker/
-│   ├── train.py                         # ML training script
-│   └── requirements.txt                 # Python dependencies
-├── sql/
-│   ├── snowflake_schema_setup.sql       # Database schema
-│   └── power_bi_views.sql               # Power BI optimized views
-└── docs/
-    ├── setup_guide.md                   # Detailed setup instructions
-    └── user_guide.md                    # Usage documentation
+├── airflow/          # Airflow DAGs and orchestration
+├── research/         # Data exploration and API helpers
+├── notebooks/        # Jupyter notebooks for analysis
+├── tests/           # Testing framework (unit & integration)
+├── sagemaker/       # ML training components
+├── sql/             # Database schemas and views
+├── config/          # Configuration files
+└── docs/            # Documentation
 ```
 
 ## 🚀 Quick Start
