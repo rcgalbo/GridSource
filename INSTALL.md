@@ -9,11 +9,14 @@ To use the GridSource package components in Jupyter notebooks with proper import
 From the GridSource root directory, run:
 
 ```bash
+# Install main dependencies
+pip install -r requirements.txt
+
 # Install in editable mode (development install)
 pip install -e .
 
-# Or install with all dependencies for testing and AWS
-pip install -e ".[testing,aws,snowflake]"
+# Or install with development dependencies (testing, airflow)
+pip install -e ".[dev]"
 ```
 
 ### 2. Verify Installation

@@ -27,28 +27,18 @@ setup(
     ],
     python_requires=">=3.8",
     install_requires=[
-        "pandas>=1.3.0",
-        "numpy>=1.21.0",
-        "requests>=2.25.0",
-        "matplotlib>=3.3.0",
-        "seaborn>=0.11.0",
-        "scikit-learn>=1.0.0",
-        "joblib>=1.0.0",
+        # Read from requirements.txt
+        line.strip() for line in open("requirements.txt") 
+        if line.strip() and not line.startswith("#")
     ],
     extras_require={
-        "testing": [
+        "dev": [
             "pytest>=7.0.0",
             "pytest-mock>=3.10.0",
             "pytest-cov>=4.0.0",
             "requests-mock>=1.10.0",
             "moto>=4.1.0",
-        ],
-        "aws": [
-            "boto3>=1.26.0",
             "apache-airflow[amazon,snowflake]>=2.5.0",
-        ],
-        "snowflake": [
-            "snowflake-connector-python>=3.0.0",
         ],
     },
 )

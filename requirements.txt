@@ -1,0 +1,24 @@
+# GridSource Bank Energy Banking Pipeline - Main Dependencies
+
+# Core Data Science Libraries
+pandas>=1.3.0
+numpy>=1.21.0
+matplotlib>=3.3.0
+seaborn>=0.11.0
+jupyter>=1.0.0
+
+# API and HTTP Libraries
+requests>=2.25.0
+
+# Machine Learning
+scikit-learn>=1.0.0
+joblib>=1.0.0
+
+# AWS and Cloud Services
+boto3>=1.26.0
+
+# Database Connectors
+snowflake-connector-python>=3.0.0
+
+# Development and Utilities
+python-dotenv>=1.0.0
