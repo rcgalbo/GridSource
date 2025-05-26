@@ -83,7 +83,7 @@ cd GridSource
 # Set up Python environment
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\\Scripts\\activate
-pip install -r sagemaker/requirements.txt
+pip install -r requirements.txt
 ```
 
 ### 2. Configure Credentials
